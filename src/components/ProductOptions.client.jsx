@@ -10,8 +10,8 @@ export default function ProductOptions() {
     <>
       {options.map(({name, values}) => {
         return (
-          <fieldset key={name} className="mt-8">
-            <legend className="mb-4 text-xl font-medium text-gray-900">
+          <fieldset key={name} className="my-3 md:flex gap-4 items-center">
+            <legend className="text-xl font-medium md:float-left text-current">
               {name}
             </legend>
             <div className="flex items-center flex-wrap gap-4">

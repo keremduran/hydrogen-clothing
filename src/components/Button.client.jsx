@@ -1,7 +1,7 @@
 import {Link} from '@shopify/hydrogen/client';
 
 const DEFAULT_CLASSES =
-  'block m-0 w-full items-center rounded-lg  justify-center capitalize font-bold text-center px-6 py-4 rounded disabled:border-gray-300 disabled:bg-gray-300 disabled:cursor-not-allowed shadow-xl shadow-orange-100';
+  'block m-0 w-full text-xs md:text-md items-center rounded-lg justify-center capitalize font-bold text-center p-2 rounded disabled:border-gray-300 disabled:bg-gray-300 disabled:cursor-not-allowed shadow-xl shadow-orange-100';
 
 const VARIANT_CLASSES = {
   primary: 'text-white bg-orange-500 hover:bg-orange-300 active:bg-gray-700',

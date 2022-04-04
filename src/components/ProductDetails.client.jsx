@@ -23,20 +23,7 @@ function AddToCartMarkup() {
   const isOutOfStock = !selectedVariant.availableForSale;
 
   return (
-    <div className="space-y-2 mb-8">
-      <AddToCartButton
-        className={BUTTON_PRIMARY_CLASSES}
-        disabled={isOutOfStock}
-      >
-        {isOutOfStock ? (
-          'Out of stock'
-        ) : (
-          <>
-            <CartIcon />
-            Add to cart
-          </>
-        )}
-      </AddToCartButton>
+    <div className="mb-8 grid sm:grid-cols-2 gap-4">
       {isOutOfStock ? (
         <p className="text-black text-center">Available in 2-3 weeks</p>
       ) : (
@@ -47,6 +34,19 @@ function AddToCartMarkup() {
           Buy it now
         </BuyNowButton>
       )}
+      <AddToCartButton
+        className={BUTTON_PRIMARY_CLASSES}
+        disabled={isOutOfStock}
+      >
+        {isOutOfStock ? (
+          'Out of stock'
+        ) : (
+          <>
+            <CartIcon />
+            <span className="ml-2">Add to cart</span>
+          </>
+        )}
+      </AddToCartButton>
     </div>
   );
 }
@@ -135,7 +135,7 @@ export default function ProductDetails({product}) {
             )}
             <ProductTitle
               as="h1"
-              className="text-4xl font-bold text-black mb-4"
+              className="text-xl md:text-2xl lg:text-3xl xl:text-4xl font-bold text-curent mb-4"
             />
             <ProductDescription className="prose py-6 text-gray-700 text-md" />
             <div className="flex items-center">
