@@ -18,7 +18,7 @@ export default function Layout({children, hero}) {
   const {data} = useShopQuery({
     query: QUERY,
     variables: {
-      numCollections: 3,
+      numCollections: 5,
     },
     cache: CacheHours(),
     preload: '*',
@@ -37,13 +37,14 @@ export default function Layout({children, hero}) {
           Skip to content
         </a>
       </div>
+      <div className="fixed top-0 left-0 w-full h-full bg-diamond -z-10" />
       <div className="min-h-screen max-w-screen text-gray-700 font-sans">
         {/* TODO: Find out why Suspense needs to be here to prevent hydration errors. */}
         <Suspense fallback={null}>
           <Header collections={collections} storeName={storeName} />
           <Cart />
         </Suspense>
-        <main role="main" id="mainContent" className="relative bg-gray-50">
+        <main role="main" id="mainContent" className="relative">
           {hero}
           <div className="mx-auto max-w-7xl p-4 md:py-5 md:px-8">
             <Suspense fallback={null}>{children}</Suspense>
