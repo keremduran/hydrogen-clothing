@@ -9,27 +9,83 @@ import {
   AddToCartButton,
   BuyNowButton,
 } from '@shopify/hydrogen/client';
+import {useState} from 'react';
 import ProductOptions from './ProductOptions.client';
 //import Gallery from './Gallery.client';
 import GalleryMobile from './Gallery.client';
 import CartIcon from './CartIcon';
+import Button from './Button.client';
 import {
   BUTTON_PRIMARY_CLASSES,
   BUTTON_SECONDARY_CLASSES,
 } from './Button.client';
 
+const plusIcon = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-5 w-5"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+    >
+      <path
+        fillRule="evenodd"
+        d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z"
+        clipRule="evenodd"
+      />
+    </svg>
+  );
+};
+const minusIcon = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className="h-5 w-5 text-gray-400"
+      viewBox="0 0 20 20"
+      fill="currentColor"
+    >
+      <path
+        fillRule="evenodd"
+        d="M5 10a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1z"
+        clipRule="evenodd"
+      />
+    </svg>
+  );
+};
+
 function AddToCartMarkup() {
   const {selectedVariant} = useProduct();
   const isOutOfStock = !selectedVariant.availableForSale;
-
+  const MAX_QUANTITY = 99;
+  const [quantity, setQuantity] = useState(0);
+  const handleSetQuantity = (newQuantity) => {
+    if (newQuantity >= 0 && newQuantity <= MAX_QUANTITY)
+      setQuantity(newQuantity);
+  };
   return (
     <div className="mb-8 grid sm:grid-cols-2 gap-4">
+      <div className="flex mx-auto rounded items-center justify-center overflow-auto col-span-full">
+        <Button
+          aria-label="Decrease quantity"
+          variant="secondary"
+          label={minusIcon()}
+          handleClick={() => handleSetQuantity(quantity - 1)}
+        />
+        <div className="p-2 mx-4 text-lg font-bold text-center">{quantity}</div>
+        <Button
+          aria-label="Increase quantity"
+          variant="secondary"
+          label={plusIcon()}
+          handleClick={() => handleSetQuantity(quantity + 1)}
+        />
+      </div>
       {isOutOfStock ? (
         <p className="text-black text-center">Available in 2-3 weeks</p>
       ) : (
         <BuyNowButton
           variantId={selectedVariant.id}
           className={BUTTON_SECONDARY_CLASSES}
+          quantity={quantity}
         >
           Buy it now
         </BuyNowButton>
@@ -37,6 +93,7 @@ function AddToCartMarkup() {
       <AddToCartButton
         className={BUTTON_PRIMARY_CLASSES}
         disabled={isOutOfStock}
+        quantity={quantity}
       >
         {isOutOfStock ? (
           'Out of stock'
