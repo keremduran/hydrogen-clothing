@@ -6,12 +6,12 @@ import {Link} from '@shopify/hydrogen/client';
 export default function Navigation({collections}) {
   return (
     <nav className="hidden lg:block text-center">
-      <ul className="md:flex items-center justify-center">
+      <ul className="md:flex items-center justify-center font-bold gap-2 opacity-95 capitalize">
         {collections.map((collection) => (
-          <li key={collection.id}>
+          <li key={collection.id} className="">
             <Link
               to={`/collections/${collection.handle}`}
-              className="block p-4 py-10 opacity-80 hover:opacity-100 hover:nav-link-shadow capitalize"
+              className="block rounded-b-lg p-5 clothing-label-effect"
             >
               {collection.title.toLowerCase()}
             </Link>
