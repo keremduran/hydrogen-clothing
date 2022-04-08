@@ -12,7 +12,6 @@ export default function CartIconWithItems() {
     <>
       <div className="relative">
         <CartIcon />
-
         <div
           className={`bg-highlight text-xs rounded-md leading-none text-white absolute bottom-6 right-0 flex items-center justify-center transform translate-y-1/2 transition-all ${
             totalQuantity > 0 ? 'h-3 w-4' : 'h-0 w-0 overflow-hidden'
