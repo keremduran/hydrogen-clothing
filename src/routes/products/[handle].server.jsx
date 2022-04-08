@@ -55,7 +55,7 @@ const QUERY = gql`
       }
       handle
       id
-      media(first: 6) {
+      media(first: 5) {
         edges {
           node {
             ... on MediaImage {

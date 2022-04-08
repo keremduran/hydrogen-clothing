@@ -8,7 +8,7 @@ import NotFound from '../../components/NotFound.server';
 
 export default function Collection({
   country = {isoCode: 'US'},
-  collectionProductCount = 24,
+  collectionProductCount = 3,
   params,
 }) {
   const {handle} = params;
