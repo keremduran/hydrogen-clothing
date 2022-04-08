@@ -22,10 +22,10 @@ export default function Header({collections, storeName}) {
   }, [isCartOpen]);
 
   return (
-    <header className="h-20 lg:h-32" role="banner">
+    <header className="h-20 lg:h-25" role="banner">
       <div
-        className={`fixed z-20 w-full border-b border-gray-200 py-4 px-8 md:px-8 lg:py-0 mx-auto bg-white ${
-          isMobileNavOpen ? '' : 'bg-opacity-95'
+        className={`fixed z-20 w-full py-4 px-8 md:px-8 lg:py-0 mx-auto ${
+          isMobileNavOpen ? '' : 'backdrop-blur-md'
         }`}
       >
         <div
