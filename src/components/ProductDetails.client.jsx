@@ -57,7 +57,7 @@ function AddToCartMarkup() {
   const {selectedVariant} = useProduct();
   const isOutOfStock = !selectedVariant.availableForSale;
   const MAX_QUANTITY = 99;
-  const [quantity, setQuantity] = useState(0);
+  const [quantity, setQuantity] = useState(1);
   const handleSetQuantity = (newQuantity) => {
     if (newQuantity >= 0 && newQuantity <= MAX_QUANTITY)
       setQuantity(newQuantity);
