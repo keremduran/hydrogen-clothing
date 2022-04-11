@@ -11,9 +11,20 @@ import MobileNavigation from './MobileNavigation.client';
  * A client component that specifies the content of the header on the website
  */
 export default function Header({collections, storeName}) {
+  const mainNavTitles = ['featured', 'men', 'women', 'kid', 'sale'];
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const [scrollbarWidth, setScrollbarWidth] = useState(0);
   const {isCartOpen} = useCartUI();
+  const organizedCollections = {
+    mainNavItems: {title: 'Main Nav', items: []},
+    subNavItems: {title: 'Brands', items: []},
+  };
+  collections.map((collection) => {
+    mainNavTitles.includes(collection.title.toLowerCase())
+      ? organizedCollections.mainNavItems.items.push(collection)
+      : organizedCollections.subNavItems.items.push(collection);
+  });
+  console.log(organizedCollections);
   useEffect(() => {
     const scrollbarWidth =
       window.innerWidth - document.documentElement.clientWidth;
@@ -37,7 +48,7 @@ export default function Header({collections, storeName}) {
           <div className="text-center w-full h-full flex justify-between items-center">
             <span className="flex items-center">
               <MobileNavigation
-                collections={collections}
+                collections={organizedCollections}
                 isOpen={isMobileNavOpen}
                 setIsOpen={setIsMobileNavOpen}
               />
@@ -47,15 +58,18 @@ export default function Header({collections, storeName}) {
               >
                 {storeName}
               </Link>
-              <Navigation collections={collections} storeName={storeName} />
+              <Navigation
+                collections={organizedCollections}
+                storeName={storeName}
+              />
             </span>
             <span className="flex">
+              <CountrySelector />
               <CartToggle
                 handleClick={() => {
                   if (isMobileNavOpen) setIsMobileNavOpen(false);
                 }}
               />
-              <CountrySelector />
             </span>
           </div>
         </div>

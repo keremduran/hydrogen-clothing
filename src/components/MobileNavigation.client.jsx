@@ -12,7 +12,8 @@ let scrollPosition = 0;
  */
 export default function MobileNavigation({collections, isOpen, setIsOpen}) {
   const OpenFocusTrap = isOpen ? FocusTrap : Fragment;
-
+  const mainNavItems = collections.mainNavItems;
+  const subNavItems = collections.subNavItems;
   useEffect(() => {
     if (isOpen) {
       scrollPosition = window.scrollY;
@@ -35,26 +36,54 @@ export default function MobileNavigation({collections, isOpen, setIsOpen}) {
           {isOpen ? <CloseIcon /> : <OpenIcon />}
         </button>
         {isOpen ? (
-          <div className="fixed -left-0 top-20 w-full h-screen z-10 bg-gray-50 px-4 md:px-12 py-7">
+          <div className="fixed -left-0 top-20 w-full h-screen overflow-y-scroll capitalize z-10 bg-gray-50 px-4 md:px-12 py-7">
             <ul>
-              {collections.map((collection) => (
+              {mainNavItems.items.map((collection) => (
                 <li className="border-b border-gray-200" key={collection.id}>
                   <Link
                     className="group py-5 text-gray-700 flex items-center justify-between"
                     to={`/collections/${collection.handle}`}
                     onClick={() => setIsOpen(false)}
                   >
-                    {collection.title}
+                    {collection.title.toLowerCase()}
                     <ArrowRightIcon className="hidden group-hover:block" />
                   </Link>
                 </li>
               ))}
+              <li className="border-b border-gray-200">
+                <details>
+                  <summary className="group hover:cursor-pointer py-5 text-gray-700 flex items-center justify-between">
+                    {subNavItems.title}
+                    <ArrowRightIcon className="invisible transition ease-in-out delay-150 group-hover:visible group-hover:rotate-90 duration-300" />
+                  </summary>
+                  <SubNavigation collections={subNavItems} />
+                </details>
+              </li>
             </ul>
             <MobileCountrySelector />
           </div>
         ) : null}
       </OpenFocusTrap>
     </div>
+  );
+}
+
+function SubNavigation({collections}) {
+  return (
+    <ul className="pl-3 text-sm">
+      {collections.items.map((collection) => (
+        <li key={collection.id}>
+          <Link
+            className="py-2 text-gray-700 group flex items-center justify-between"
+            to={`/collections/${collection.handle}`}
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {collection.title.toLowerCase()}
+            <ArrowRightIcon className="hidden group-hover:block" />
+          </Link>
+        </li>
+      ))}
+    </ul>
   );
 }
 

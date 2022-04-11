@@ -11,7 +11,7 @@
 
 @layer components {
   .clothing-label-effect {
-    @apply bg-orange-50 border-dashed border-t-[0.25em] md:hover:scale-105 md:hover:tracking-wide transition-all shadow-md md:hover:shadow-xl;
+    @apply bg-orange-50 border-dashed border-t-[0.25em] transition-all shadow-md md:hover:shadow-xl;
   }
 }
 
