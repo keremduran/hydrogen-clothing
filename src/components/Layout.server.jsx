@@ -18,7 +18,7 @@ export default function Layout({children, hero}) {
   const {data} = useShopQuery({
     query: QUERY,
     variables: {
-      numCollections: 5,
+      numCollections: 100,
     },
     cache: CacheHours(),
     preload: '*',
