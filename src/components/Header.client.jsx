@@ -24,7 +24,6 @@ export default function Header({collections, storeName}) {
       ? organizedCollections.mainNavItems.items.push(collection)
       : organizedCollections.subNavItems.items.push(collection);
   });
-  console.log(organizedCollections);
   useEffect(() => {
     const scrollbarWidth =
       window.innerWidth - document.documentElement.clientWidth;

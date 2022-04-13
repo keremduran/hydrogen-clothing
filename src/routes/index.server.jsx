@@ -6,11 +6,10 @@ import {
   CacheDays,
 } from '@shopify/hydrogen';
 import gql from 'graphql-tag';
-
 import Layout from '../components/Layout.server';
 import FeaturedCollection from '../components/FeaturedCollection';
 import ProductCard from '../components/ProductCard';
-//import Welcome from '../components/Welcome.server';
+import Welcome from '../components/Welcome.server';
 import {Suspense} from 'react';
 export default function Index({country = {isoCode: 'US'}}) {
   return (
@@ -19,7 +18,7 @@ export default function Index({country = {isoCode: 'US'}}) {
         <SeoForHomepage />
       </Suspense>
       <div className="relative mb-12">
-        {/* <Welcome /> */}
+        <Welcome />
         <Suspense fallback={<BoxFallback />}>
           <FeaturedProductsBox country={country} />
         </Suspense>
@@ -52,7 +51,6 @@ function SeoForHomepage() {
     />
   );
 }
-
 function BoxFallback() {
   return (
     <div className="bg-white p-12 shadow-xl rounded-xl mb-10 h-[40]"></div>

@@ -10,9 +10,9 @@ export default function Navigation({collections}) {
   return (
     <nav className="hidden lg:block text-center">
       <motion.ul
-        initial={{x: 100, opacity: 0}}
-        animate={{x: 0, opacity: 1}}
-        transition={{duration: 0.5}}
+        initial={{x: 30}}
+        animate={{x: 0}}
+        transition={{duration: 0.2}}
         exit={{opacity: 0}}
         className="md:flex items-top justify-center font-bold gap-2 opacity-95 capitalize"
       >
